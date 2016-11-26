@@ -112,8 +112,8 @@ used to encrypt outgoing messages and verify the signature on incoming
 messages.
 
 Note that ``WssePlugin`` is currently hardcoded to sign the ``wsu:Timestamp``
-and ``soap:Body`` elements, and to encrypt only the first child of the
-``soap:Body`` element. Pull requests to add more flexibility are welcome.
+and ``soap:Body`` elements, and to optionally encrypt only the first child of
+the ``soap:Body`` element. Pull requests to add more flexibility are welcome.
 
 
 Standalone functions
