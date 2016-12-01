@@ -20,7 +20,7 @@ def sign(envelope, keyfile, certfile):
     """Sign given SOAP envelope with WSSE sig using given key and cert.
 
     Sign the wsu:Timestamp node in the wsse:Security header and the soap:Body;
-    both must be present.
+    Timestamp is optional, Body must be present.
 
     Add a ds:Signature node in the wsse:Security header containing the
     signature.
@@ -135,7 +135,8 @@ def sign(envelope, keyfile, certfile):
     ctx = xmlsec.SignatureContext()
     ctx.key = key
     _sign_node(ctx, signature, doc.find(ns(SOAP_NS, 'Body')))
-    _sign_node(ctx, signature, security.find(ns(WSU_NS, 'Timestamp')))
+    if security.find(ns(WSU_NS, 'Timestamp')):
+        _sign_node(ctx, signature, security.find(ns(WSU_NS, 'Timestamp')))
     ctx.sign(signature)
 
     # Place the X509 data inside a WSSE SecurityTokenReference within

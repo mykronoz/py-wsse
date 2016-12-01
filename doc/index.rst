@@ -100,9 +100,9 @@ list of ``plugins`` passed to a new ``Client`` instance::
         )
 
 ``WssePlugin`` requires that the outgoing messages already have a
-``wsse:Security`` element in the ``soap:Header`` with a ``wsu:Timestamp``
-token. Suds can do this via its ``Security`` and ``Timestamp`` objects, as
-shown in the above example.
+``wsse:Security`` element in the ``soap:Header`` with an optional
+``wsu:Timestamp`` token. Suds can do this via its ``Security`` and
+``Timestamp`` objects, as shown in the above example.
 
 In the example, ``our_keyfile_path``, ``our_certfile_path``, and
 ``their_certfile_path`` should all be absolute filesystem paths to X509
@@ -112,8 +112,9 @@ used to encrypt outgoing messages and verify the signature on incoming
 messages.
 
 Note that ``WssePlugin`` is currently hardcoded to sign the ``wsu:Timestamp``
-and ``soap:Body`` elements, and to optionally encrypt only the first child of
-the ``soap:Body`` element. Pull requests to add more flexibility are welcome.
+(if it is present) and ``soap:Body`` elements, and to optionally encrypt only
+the first child of the ``soap:Body`` element.
+Pull requests to add more flexibility are welcome.
 
 
 Standalone functions
